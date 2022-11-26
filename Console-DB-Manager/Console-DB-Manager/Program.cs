@@ -80,7 +80,8 @@ namespace Console_DB_Manager
             string dbToManip = string.Empty;
             string opToPerf = string.Empty;
             string[] dbsOps = new string[] { "1", "2", "q" };
-            string[] mainOps = new string[] { "1", "2", "3", "4", "5", "q"  };
+            string[] supAdOps = new string[] { "1", "2", "3", "4", "5", "6" ,"q"  };
+            string[] adOps = new string[] { "1", "2", "3", "4", "5", "q" };
             string errorMessage = string.Empty;
             string hiddenOption = authLevel == "SA" ? "6. Choose another table\n\n\t" : string.Empty;
             string sixToShow = authLevel == "SA" ? "/6" : string.Empty;
@@ -109,15 +110,18 @@ namespace Console_DB_Manager
                         {
                             if (userProc != "q" || userProc != "Q")
                             {
-                                if (userProc != "1" || userProc != "2")
+                                if (!dbsOps.Contains(userProc))
                                 {
                                     dbToManip = userProc;
                                     break;
                                 }
                                 else
                                 {
-                                    dbOps.setDbToManip(dbsOps[i]);
-                                    dbToManip = dbsOps[i];
+                                    if (userProc == dbsOps[i]) 
+                                    {
+                                        dbOps.setDbToManip(dbsOps[i]);
+                                        dbToManip = dbsOps[i];
+                                    }                                  
                                 }
                             }
                             else
@@ -152,6 +156,87 @@ namespace Console_DB_Manager
                     Console.Clear();
                     Console.Write($"Choose a Procedure to perform: [1/2/3/4/5{sixToShow}]\n\n\t1.Show Table Data\n\n\t2.Add Data to Table\n\n\t3.Search Specific Data from table\n\n\t4.Edit Specific Data from table\n\n\t5.Delete Specific Data from table\n\n\t{ hiddenOption }Q. Log Out\n\nAnswer: ");
                     userProc = Console.ReadLine();
+
+                    if (authLevel != "SA")
+                    {
+                        for (int i = 0; i < adOps.Length; i++)
+                        {
+                            if (userProc != "q" || userProc != "Q")
+                            {
+                                if (userProc != "1" || userProc != "2" || userProc != "3" || userProc != "4" || userProc != "5")
+                                {
+                                    opToPerf = userProc;
+                                    break;
+                                }
+                                else
+                                {
+                                    if (userProc == adOps[i])
+                                    {
+                                        opToPerf = adOps[i];
+                                    }
+                                }
+                            }
+                            else
+                            {
+                                break;
+                            }
+                        }
+                    }
+                    else 
+                    {
+                        for (int i = 0; i < supAdOps.Length; i++)
+                        {
+                            if (userProc != "q" || userProc != "Q")
+                            {
+                                if (userProc != "1" || userProc != "2" || userProc != "3" || userProc != "4" || userProc != "5" || userProc != "6")
+                                {
+                                    opToPerf = userProc;
+                                    break;
+                                }
+                                else
+                                {
+                                    if (userProc == adOps[i])
+                                    {
+                                        opToPerf = adOps[i];
+                                    }
+                                }
+                            }
+                            else
+                            {
+                                break;
+                            }
+                        }
+                    }
+
+                    if (userProc.ToLower() == "q")
+                    {
+                        errorMessage = errMessage.DisplayErrorMessage(8);
+                        Console.Write(errorMessage);
+                        dbToManip = String.Empty;
+                        Console.ReadKey();
+                        Console.Clear();
+                    }
+                    else if (!supAdOps.Contains(opToPerf) && !adOps.Contains(opToPerf))
+                    {
+                        Console.Clear();
+                        errorMessage = errMessage.DisplayErrorMessage(7);
+                        Console.Write(errorMessage);
+                        Console.ReadKey();
+                        Console.Clear();
+                    }
+                    else 
+                    {
+                        switch (opToPerf) 
+                        {
+                            case "1":
+                                dbOps.showData();
+                                break;
+                            case "6":
+                                dbToManip = String.Empty ;
+                                break;
+                        }
+                    }
+                    
                 }
          
             }
