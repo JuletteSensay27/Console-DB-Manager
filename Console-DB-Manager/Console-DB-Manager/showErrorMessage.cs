@@ -18,10 +18,9 @@ namespace Console_DB_Manager
          * 
         */
 
-        private static string[] errorMessage = new string[3];
+        private  string[] errorMessage = new string[3];
 
-
-        private static void genErrorMessage(int errorCode) 
+        private  void genErrorMessage(int errorCode) 
         {
             string[] temp = new string[3];
 
@@ -48,14 +47,19 @@ namespace Console_DB_Manager
                     temp[2] = "INCORRECT PASSWORD!";
                     break;
             }
+
+            for (int i = 0; i < errorMessage.Length; i++) 
+            {
+                errorMessage[i] = temp[i];
+            }
         }
 
-        public static string DisplayErrorMessage(int errorCode) 
+        public string DisplayErrorMessage(int errorCode) 
         {
             genErrorMessage(errorCode);
             string errorMessage = string.Empty;
 
-            errorMessage = $"ERROR CODE:{errorMessage[0]}\nERROR NAME:{errorMessage[1]}\nERROR DESCRIPTION:{errorMessage[2]}";
+            errorMessage = $"ERROR CODE:{this.errorMessage[0]}\nERROR NAME:{this.errorMessage[1]}\nERROR DESCRIPTION:{this.errorMessage[2]}";
 
             return errorMessage;
         }
