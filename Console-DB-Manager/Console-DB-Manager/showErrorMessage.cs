@@ -39,12 +39,22 @@ namespace Console_DB_Manager
                 case 2:
                     temp[0] = "2";
                     temp[1] = "LOGIN ERROR";
-                    temp[2] = "ACCOUNT NOT FOUND!";
+                    temp[2] = "ACCOUNT NOT FOUND! TRY AGAIN";
                     break;
                 case 3:
                     temp[0] = "3";
                     temp[1] = "LOGIN ERROR";
-                    temp[2] = "INCORRECT PASSWORD!";
+                    temp[2] = "INCORRECT PASSWORD! TRY AGAIN";
+                    break;
+                case 4:
+                    temp[0] = "4";
+                    temp[1] = "LOGIN ERROR";
+                    temp[2] = "YOUR ACCOUNT IS NOT AUTHORIZED TO LOGIN!";
+                    break;
+                case 5:
+                    temp[0] = "5";
+                    temp[1] = "LOGIN ERROR";
+                    temp[2] = "TOO MANY ATTEMPTS! WILL END APPLICATION";
                     break;
             }
 
