@@ -61,6 +61,16 @@ namespace Console_DB_Manager
                     temp[1] = "LOGIN SUCCESSFUL";
                     temp[2] = "LOGIN IS SUCCESSFUL!";
                     break;
+                case 7:
+                    temp[0] = "7";
+                    temp[1] = "INPUT ERROR";
+                    temp[2] = "INVALID INPUT!";
+                    break;
+                case 8:
+                    temp[0] = "8";
+                    temp[1] = "LOGGING OUT";
+                    temp[2] = "LOGGING ACCOUNT OUT";
+                    break;
             }
 
             for (int i = 0; i < errorMessage.Length; i++) 
