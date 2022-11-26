@@ -78,8 +78,13 @@ namespace Console_DB_Manager
         {
             string userProc = string.Empty;
             string dbToManip = string.Empty;
+            string opToPerf = string.Empty;
             string[] dbsOps = new string[] { "1", "2", "q" };
+            string[] mainOps = new string[] { "1", "2", "3", "4", "5", "q"  };
             string errorMessage = string.Empty;
+            string hiddenOption = authLevel == "SA" ? "6. Choose another table\n\n\t" : string.Empty;
+            string sixToShow = authLevel == "SA" ? "/6" : string.Empty;
+            string empty = string.Empty;
 
             while (userProc.ToLower() != "q")
             {
@@ -87,7 +92,7 @@ namespace Console_DB_Manager
 
                 if (dbToManip == String.Empty)
                 {
-                    Console.Write("SIMPLE DATABASE MANAGER\n\n");
+                   
 
                     if (authLevel != "SA")
                     {
@@ -96,6 +101,7 @@ namespace Console_DB_Manager
                     }
                     else
                     {
+                        Console.Write("SIMPLE DATABASE MANAGER\n\n");
                         Console.Write("Choose a Table to manipulate: [1/2]\n\n\t1.Accounts Table\n\n\t2.Main Table\n\n\tQ.Log Out\n\nAnswer: ");
                         userProc = Console.ReadLine();
 
@@ -143,6 +149,9 @@ namespace Console_DB_Manager
                     Console.Write("SIMPLE DATABASE MANAGER\n\n");
                     Console.Write("WELCOME!");
                     Console.ReadKey();
+                    Console.Clear();
+                    Console.Write($"Choose a Procedure to perform: [1/2/3/4/5{sixToShow}]\n\n\t1.Show Table Data\n\n\t2.Add Data to Table\n\n\t3.Search Specific Data from table\n\n\t4.Edit Specific Data from table\n\n\t5.Delete Specific Data from table\n\n\t{ hiddenOption }Q. Log Out\n\nAnswer: ");
+                    userProc = Console.ReadLine();
                 }
          
             }
