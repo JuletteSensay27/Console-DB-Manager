@@ -56,6 +56,11 @@ namespace Console_DB_Manager
                     temp[1] = "LOGIN ERROR";
                     temp[2] = "TOO MANY ATTEMPTS! WILL END APPLICATION";
                     break;
+                case 6:
+                    temp[0] = "6";
+                    temp[1] = "LOGIN SUCCESSFUL";
+                    temp[2] = "LOGIN IS SUCCESSFUL!";
+                    break;
             }
 
             for (int i = 0; i < errorMessage.Length; i++) 

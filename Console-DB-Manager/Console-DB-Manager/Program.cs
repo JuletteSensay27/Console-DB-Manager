@@ -17,21 +17,26 @@ namespace Console_DB_Manager
             string userName = string.Empty;
             string userPassword = string.Empty;
             string errorMessage = string.Empty;
+            string userProc = string.Empty;
             bool logChecker = true;
             int attemptCounter = 0;
+            string authLevel = string.Empty;
 
             accLog.checkTable();
             
             while (logChecker) 
             {
                 Console.Clear();
+                Console.ForegroundColor = ConsoleColor.White;
                 Console.Write("Username: ");
                 userName = Console.ReadLine();
                 Console.Write("Password: "," ");
                 userPassword = Console.ReadLine();
 
-                if (accLog.login(userName, userPassword) != 0)
+                if (accLog.login(userName, userPassword) != 6)
                 {
+                    Console.Clear();
+                    Console.ForegroundColor = ConsoleColor.Red;
                     if (accLog.login(userName, userPassword) == 3 || accLog.login(userName, userPassword) == 4) 
                     {
                         attemptCounter++;
@@ -39,23 +44,43 @@ namespace Console_DB_Manager
 
                     if (attemptCounter > 3) 
                     {
-                        Console.Clear();
+                        
+                        
                         errorMessage = errMessage.DisplayErrorMessage(5);
                         Console.WriteLine(errorMessage);
-                        Console.ReadKey();
+                        Task.Delay(3000).Wait();
                         Environment.Exit(0);
                     }
 
                     logChecker = true;
-                    errorMessage = errMessage.DisplayErrorMessage(accLog.login(userName, userPassword));
+                    errorMessage = errMessage.DisplayErrorMessage(accLog.login(userName, userPassword));               
                     Console.WriteLine(errorMessage);
+                    
                 }
                 else
                 {
-                    logChecker=false;
+                    Console.Clear();
+                    authLevel = accLog.getAuthorizationLevel();
+                    errorMessage = errMessage.DisplayErrorMessage(accLog.login(userName, userPassword));
+                    Console.WriteLine(errorMessage);
+                    logChecker =false;
                 }
             
+                Console.ReadKey();
+            }
+            while (userProc.ToLower() != "q") 
+            {
+                Console.Clear();
+                Console.Write("SIMPLE DATABASE MANAGER\n\n");
 
+                if (authLevel != "SA")
+                {
+                    Console.Write("I am an admin!");
+                }
+                else
+                {
+                    Console.Write("I am a Super admin!");
+                }
                 Console.ReadKey();
             }
 

@@ -11,6 +11,7 @@ namespace Console_DB_Manager
     {
         private static showErrorMessage errMessage = new showErrorMessage();
         private string filePath = "acc_table.csv";
+        private string authLevel = string.Empty;
 
         private Dictionary<string, string[]> userAccounts = new Dictionary<string, string[]>();
 
@@ -79,18 +80,30 @@ namespace Console_DB_Manager
                 }
                 else
                 {
-                    if (tempCredChecker[2] != "A" || tempCredChecker[2] != "SA")
+                    if (tempCredChecker[2] != "A" && tempCredChecker[2] != "SA")
                     {
                         loginChecker = 4;
                     }
                     else
                     {
-                        loginChecker = 0;
+                        
+                        loginChecker = 6;
+                        setAuthorizationLevel(tempCredChecker[2]);
                     }
                 } 
             }
 
             return loginChecker;
+        }
+
+        public string getAuthorizationLevel() 
+        {
+            return authLevel;
+        }
+
+        private void setAuthorizationLevel(string authLevel) 
+        {
+            this.authLevel = authLevel;
         }
     }
 }
