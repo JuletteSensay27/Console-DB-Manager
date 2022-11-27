@@ -36,7 +36,7 @@ namespace Console_DB_Manager
                     fileLineCont = new string[fileLine.Split(',').Length];
                     fileLineCont = fileLine.Split(',');
 
-                    tableData.Add($"row{rowCounter}", fileLineCont);
+                    tableData.Add($"row{rowCounter+1}", fileLineCont);
                     rowCounter++;
                 }
             }
@@ -58,17 +58,117 @@ namespace Console_DB_Manager
         {
             checkTableExists();
             retrieveData();
+            string userProc = string.Empty;
+            string errorMessage = string.Empty;
 
-            for (int x = 0; x < tableData.Count; x++) 
+            while (userProc.ToLower() != "y") 
             {
-                for (int y = 0; y < tableData.Values.ElementAt(x).Length; y++) 
+                Console.Clear();
+                for (int x = 0; x < tableData.Count; x++)
                 {
-                    Console.WriteLine(tableData.Values.ElementAt(x)[y]);
-                }
-            }
+                    Console.ForegroundColor= ConsoleColor.Green;
+                    Console.Write(tableData.Keys.ElementAt(x) + " -> ");
+                    Console.ForegroundColor = ConsoleColor.White;
+                    for (int y = 0; y < tableData.Values.ElementAt(x).Length; y++)
+                    {
+                        Console.Write(tableData.Values.ElementAt(x)[y] + " | ");
+                    }
 
-            Console.ReadKey();
+                    Console.WriteLine();
+                }
+
+                Console.WriteLine();
+                Console.Write("return to main menu?: [y/N]\nAnswer: ");
+                userProc = Console.ReadLine();
+
+                if (userProc.ToLower() != "y" && userProc.ToLower() != "n") 
+                {
+                    Console.Clear();
+                    errorMessage = errMessage.DisplayErrorMessage(7);
+                    Console.Write(errorMessage);
+                    Console.ReadKey();
+                }
+            }    
         }
 
+        public void addData() 
+        {
+            checkTableExists();
+            retrieveData();
+            string userProc = string.Empty;
+            string errorMessage = string.Empty;
+            string[] newData = new string[3];
+            string filePath = dbToManip == "1" ? "acc_table.csv" : "main_table.csv";
+
+            while (userProc.ToLower() != "n") 
+            {
+                Console.Clear();
+                newData = new string[3];
+                if (dbToManip != "2") 
+                {
+                    Console.Write("Name: ");
+                    newData[0] = Console.ReadLine().Trim();
+                    Console.Write("Password: ");
+                    newData[1] = Console.ReadLine().Trim();
+                    Console.Write("Authorization Level (Can only be [A | SA]): ");
+                    newData[2] = Console.ReadLine().Trim();
+
+                    if (newData[2].Length > 2 || newData[2] == string.Empty)
+                    {
+                        Console.Clear();
+                        errorMessage = errMessage.DisplayErrorMessage(7);
+                        Console.Write(errorMessage);
+                        Console.ReadKey();
+                   
+                    }
+                    else
+                    {
+                        if (newData[2].ToUpper() != "A" && newData[2].ToUpper() != "SA")
+                        {
+                            Console.Clear();
+                            errorMessage = errMessage.DisplayErrorMessage(7);
+                            Console.Write(errorMessage);
+                            Console.ReadKey();
+                        }
+                        else
+                        {
+                            tableData.Add($"row{tableData.Count+1}", newData);
+                            using (StreamWriter sw = new StreamWriter(filePath)) 
+                            {
+                                for (int i = 0; i < tableData.Count; i++) 
+                                {  
+                                    for (int x = 0; x < tableData.Values.ElementAt(i).Length; x++) 
+                                    {
+                                        if (x > 1)
+                                        {
+                                            sw.Write(tableData.Values.ElementAt(i)[x]);
+                                        }
+                                        else
+                                        {
+                                            sw.Write(tableData.Values.ElementAt(i)[x]+",");
+                                        }
+                                    }
+                                    sw.WriteLine();
+                                }
+
+                                sw.Close();
+                            }
+
+                            Console.Write("Do you still want to add more data?: [y/N]\nAnswer: ");
+                            userProc = Console.ReadLine();
+
+                            if (userProc.ToLower() != "y" && userProc.ToLower() != "n") 
+                            {
+                                Console.Clear();
+                                errorMessage = errMessage.DisplayErrorMessage(7);
+                                Console.Write(errorMessage);
+                                Console.ReadKey();
+                            }
+                        }
+                    }
+
+                }
+            }
+        }
     }
 }
