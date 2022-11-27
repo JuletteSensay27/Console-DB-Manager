@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.IO;
+using System.Text.RegularExpressions;
 
 namespace Console_DB_Manager
 {
@@ -15,6 +16,8 @@ namespace Console_DB_Manager
         private string dbToManip = string.Empty;
 
         private Dictionary<string, string[]> tableData = new Dictionary<string, string[]>();
+
+        private Regex pattern = new Regex("^[0-9]+$", RegexOptions.IgnoreCase);
 
         public void setDbToManip(string dbToManip)
         {
@@ -244,6 +247,51 @@ namespace Console_DB_Manager
             retrieveData();
             string userProc = string.Empty;
             string errorMessage = string.Empty;
+            int rowIndex = 0;
+
+            while (userProc.ToLower() != "n") 
+            {
+                Console.Clear();
+                Console.Write("Type specific row number here: ");
+                userProc = Console.ReadLine();
+
+                if (!pattern.IsMatch(userProc))
+                {
+                    Console.Clear();
+                    errorMessage = errMessage.DisplayErrorMessage(7);
+                    Console.Write(errorMessage);
+                    Console.ReadKey();
+                }
+                else
+                {
+                    if (int.Parse(userProc) > tableData.Count || int.Parse(userProc) < 1)
+                    {
+                        Console.Clear();
+                        errorMessage = errMessage.DisplayErrorMessage(9);
+                        Console.Write(errorMessage);
+                        Console.ReadKey();
+                    }
+                    else
+                    {
+                        Console.Clear();
+                        rowIndex = int.Parse(userProc) - 1;
+                        Console.ForegroundColor = ConsoleColor.Green;
+                        Console.Write($"{tableData.Keys.ElementAt(rowIndex)}-> ");
+                        Console.ForegroundColor = ConsoleColor.White;
+                        Console.WriteLine($"{tableData.Values.ElementAt(rowIndex)[0]} | {tableData.Values.ElementAt(rowIndex)[1]} | {tableData.Values.ElementAt(rowIndex)[2]}\n");
+                        Console.Write("Search For another Data?: [y/N]\nAnswer: ");
+                        userProc = Console.ReadLine();
+
+                        if (userProc.ToLower() != "y" && userProc.ToLower() != "n") 
+                        {
+                            Console.Clear();
+                            errorMessage = errMessage.DisplayErrorMessage(7);
+                            Console.Write(errorMessage);
+                            Console.ReadKey();
+                        }
+                    }
+                }
+            }
         }
     }
 }
