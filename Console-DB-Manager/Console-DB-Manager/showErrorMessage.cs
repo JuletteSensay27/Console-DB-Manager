@@ -71,6 +71,11 @@ namespace Console_DB_Manager
                     temp[1] = "LOGGING OUT";
                     temp[2] = "LOGGING ACCOUNT OUT";
                     break;
+                case 9:
+                    temp[0] = "9";
+                    temp[1] = "TABLE ERROR";
+                    temp[2] = "ROW NOT EXISTING!";
+                    break;
             }
 
             for (int i = 0; i < errorMessage.Length; i++) 

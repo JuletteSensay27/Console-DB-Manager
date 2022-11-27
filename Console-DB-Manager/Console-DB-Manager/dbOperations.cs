@@ -16,7 +16,7 @@ namespace Console_DB_Manager
 
         private Dictionary<string, string[]> tableData = new Dictionary<string, string[]>();
 
-        public void setDbToManip(string dbToManip) 
+        public void setDbToManip(string dbToManip)
         {
             this.dbToManip = dbToManip;
         }
@@ -24,7 +24,7 @@ namespace Console_DB_Manager
         private void retrieveData()
         {
             tableData = new Dictionary<string, string[]>();
-            string filePath = dbToManip == "1" ? "acc_table.csv" : "main_table.csv" ;
+            string filePath = dbToManip == "1" ? "acc_table.csv" : "main_table.csv";
             string fileLine = string.Empty;
             string[] fileLineCont = new string[] { };
             int rowCounter = 0;
@@ -36,13 +36,13 @@ namespace Console_DB_Manager
                     fileLineCont = new string[fileLine.Split(',').Length];
                     fileLineCont = fileLine.Split(',');
 
-                    tableData.Add($"row{rowCounter+1}", fileLineCont);
+                    tableData.Add($"row{rowCounter + 1}", fileLineCont);
                     rowCounter++;
                 }
             }
         }
 
-        private void checkTableExists() 
+        private void checkTableExists()
         {
             string filePath = dbToManip == "1" ? "acc_table.csv" : "main_table.csv";
             if (!File.Exists(filePath))
@@ -54,19 +54,19 @@ namespace Console_DB_Manager
             }
         }
 
-        public void showData() 
+        public void showData()
         {
             checkTableExists();
             retrieveData();
             string userProc = string.Empty;
             string errorMessage = string.Empty;
 
-            while (userProc.ToLower() != "y") 
+            while (userProc.ToLower() != "y")
             {
                 Console.Clear();
                 for (int x = 0; x < tableData.Count; x++)
                 {
-                    Console.ForegroundColor= ConsoleColor.Green;
+                    Console.ForegroundColor = ConsoleColor.Green;
                     Console.Write(tableData.Keys.ElementAt(x) + " -> ");
                     Console.ForegroundColor = ConsoleColor.White;
                     for (int y = 0; y < tableData.Values.ElementAt(x).Length; y++)
@@ -81,17 +81,17 @@ namespace Console_DB_Manager
                 Console.Write("return to main menu?: [y/N]\nAnswer: ");
                 userProc = Console.ReadLine();
 
-                if (userProc.ToLower() != "y" && userProc.ToLower() != "n") 
+                if (userProc.ToLower() != "y" && userProc.ToLower() != "n")
                 {
                     Console.Clear();
                     errorMessage = errMessage.DisplayErrorMessage(7);
                     Console.Write(errorMessage);
                     Console.ReadKey();
                 }
-            }    
+            }
         }
 
-        public void addData() 
+        public void addData()
         {
             checkTableExists();
             retrieveData();
@@ -100,7 +100,7 @@ namespace Console_DB_Manager
             string[] newData = new string[3];
             string filePath = dbToManip == "1" ? "acc_table.csv" : "main_table.csv";
 
-            while (userProc.ToLower() != "n") 
+            while (userProc.ToLower() != "n")
             {
                 Console.Clear();
                 newData = new string[3];
@@ -168,7 +168,7 @@ namespace Console_DB_Manager
                     }
 
                 }
-                else 
+                else
                 {
 
                     {
@@ -236,6 +236,14 @@ namespace Console_DB_Manager
                     }
                 }
             }
+        }
+
+        public void searchData() 
+        {
+            checkTableExists();
+            retrieveData();
+            string userProc = string.Empty;
+            string errorMessage = string.Empty;
         }
     }
 }
