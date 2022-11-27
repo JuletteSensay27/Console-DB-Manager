@@ -76,6 +76,11 @@ namespace Console_DB_Manager
                     temp[1] = "TABLE ERROR";
                     temp[2] = "ROW NOT EXISTING!";
                     break;
+                case 10:
+                    temp[0] = "10";
+                    temp[1] = "PROCEDURE ERROR";
+                    temp[2] = "CANNOT PROCEED WITH OPERATION!";
+                    break;
             }
 
             for (int i = 0; i < errorMessage.Length; i++) 

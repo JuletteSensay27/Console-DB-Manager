@@ -82,6 +82,9 @@ namespace Console_DB_Manager
                             case "3":
                                 searchData();
                                 break;
+                            case "4":
+                                editData();
+                                break;
                             case "6":
                                 tableToManip = string.Empty;
                                 break;
