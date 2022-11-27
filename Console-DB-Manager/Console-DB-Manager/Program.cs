@@ -12,6 +12,7 @@ namespace Console_DB_Manager
         private static accountLogin accLog = new accountLogin();
         private static showErrorMessage errMessage = new showErrorMessage();
         private static dbOperations dbOps = new dbOperations();
+        private static superAdminSystem supAds = new superAdminSystem();
 
         static void Main(string[] args)
         {
@@ -76,168 +77,13 @@ namespace Console_DB_Manager
 
         private static void mainOperation(string authLevel)
         {
-            string userProc = string.Empty;
-            string dbToManip = string.Empty;
-            string opToPerf = string.Empty;
-            string[] dbsOps = new string[] { "1", "2", "q" };
-            string[] supAdOps = new string[] { "1", "2", "3", "4", "5", "6" ,"q"  };
-            string[] adOps = new string[] { "1", "2", "3", "4", "5", "q" };
-            string errorMessage = string.Empty;
-            string hiddenOption = authLevel == "SA" ? "6. Choose another table\n\n\t" : string.Empty;
-            string sixToShow = authLevel == "SA" ? "/6" : string.Empty;
-            string empty = string.Empty;
-
-            while (userProc.ToLower() != "q")
+            if (authLevel != "SA")
             {
-                Console.Clear();
 
-                if (dbToManip == String.Empty)
-                {
-                   
-
-                    if (authLevel != "SA")
-                    {
-                        dbToManip = "2";
-                        dbOps.setDbToManip(dbToManip);
-                    }
-                    else
-                    {
-                        Console.Write("SIMPLE DATABASE MANAGER\n\n");
-                        Console.Write("Choose a Table to manipulate: [1/2]\n\n\t1.Accounts Table\n\n\t2.Main Table\n\n\tQ.Log Out\n\nAnswer: ");
-                        userProc = Console.ReadLine();
-
-                        for (int i = 0; i < dbsOps.Length; i++)
-                        {
-                            if (userProc != "q" || userProc != "Q")
-                            {
-                                if (!dbsOps.Contains(userProc))
-                                {
-                                    dbToManip = userProc;
-                                    break;
-                                }
-                                else
-                                {
-                                    if (userProc == dbsOps[i]) 
-                                    {
-                                        dbOps.setDbToManip(dbsOps[i]);
-                                        dbToManip = dbsOps[i];
-                                    }                                  
-                                }
-                            }
-                            else
-                            {
-                                break;
-                            }
-                        }
-
-                        Console.Clear();
-                    }
-                }
-
-
-                if (userProc.ToLower() == "q")
-                {
-                    errorMessage = errMessage.DisplayErrorMessage(8);
-                    Console.Write(errorMessage);
-                }
-                else if (dbToManip != "1" && dbToManip != "2" ) 
-                {
-                    errorMessage = errMessage.DisplayErrorMessage(7);
-                    Console.Write(errorMessage);
-                    dbToManip = String.Empty;
-                    Console.ReadKey();
-                    Console.Clear();
-                }
-                else
-                {
-                    Console.Write("SIMPLE DATABASE MANAGER\n\n");
-                    Console.Write("WELCOME!");
-                    Console.ReadKey();
-                    Console.Clear();
-                    Console.Write($"Choose a Procedure to perform: [1/2/3/4/5{sixToShow}]\n\n\t1.Show Table Data\n\n\t2.Add Data to Table\n\n\t3.Search Specific Data from table\n\n\t4.Edit Specific Data from table\n\n\t5.Delete Specific Data from table\n\n\t{ hiddenOption }Q. Log Out\n\nAnswer: ");
-                    userProc = Console.ReadLine();
-
-                    if (authLevel != "SA")
-                    {
-                        for (int i = 0; i < adOps.Length; i++)
-                        {
-                            if (userProc != "q" || userProc != "Q")
-                            {
-                                if (userProc != "1" || userProc != "2" || userProc != "3" || userProc != "4" || userProc != "5")
-                                {
-                                    opToPerf = userProc;
-                                    break;
-                                }
-                                else
-                                {
-                                    if (userProc == adOps[i])
-                                    {
-                                        opToPerf = adOps[i];
-                                    }
-                                }
-                            }
-                            else
-                            {
-                                break;
-                            }
-                        }
-                    }
-                    else 
-                    {
-                        for (int i = 0; i < supAdOps.Length; i++)
-                        {
-                            if (userProc != "q" || userProc != "Q")
-                            {
-                                if (userProc != "1" || userProc != "2" || userProc != "3" || userProc != "4" || userProc != "5" || userProc != "6")
-                                {
-                                    opToPerf = userProc;
-                                    break;
-                                }
-                                else
-                                {
-                                    if (userProc == adOps[i])
-                                    {
-                                        opToPerf = adOps[i];
-                                    }
-                                }
-                            }
-                            else
-                            {
-                                break;
-                            }
-                        }
-                    }
-                    if (userProc.ToLower() == "q")
-                    {
-                        errorMessage = errMessage.DisplayErrorMessage(8);
-                        Console.Write(errorMessage);
-                        dbToManip = String.Empty;
-                        Console.ReadKey();
-                        Console.Clear();
-                    }
-                    else if (!supAdOps.Contains(opToPerf) && !adOps.Contains(opToPerf))
-                    {
-                        Console.Clear();
-                        errorMessage = errMessage.DisplayErrorMessage(7);
-                        Console.Write(errorMessage);
-                        Console.ReadKey();
-                        Console.Clear();
-                    }
-                    else 
-                    {
-                        switch (opToPerf) 
-                        {
-                            case "1":
-                                dbOps.showData();
-                                break;
-                            case "6":
-                                dbToManip = String.Empty ;
-                                break;
-                        }
-                    }
-                    
-                }
-         
+            }
+            else
+            {
+                supAds.mainSystem();
             }
         }
     }
