@@ -13,6 +13,7 @@ namespace Console_DB_Manager
         private static showErrorMessage errMessage = new showErrorMessage();
         private static dbOperations dbOps = new dbOperations();
         private static superAdminSystem supAds = new superAdminSystem();
+        private static adminSystem ads = new adminSystem();
 
         static void Main(string[] args)
         {
@@ -79,7 +80,7 @@ namespace Console_DB_Manager
         {
             if (authLevel != "SA")
             {
-
+                ads.mainSystem();
             }
             else
             {

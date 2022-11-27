@@ -23,7 +23,7 @@ namespace Console_DB_Manager
                 setDbToManip("2");
                 
                  Console.Clear();
-                 Console.Write("Choose an operation to perform:[1/2/3/4/5/6]\n\n\t1.Show Table Data\n\n\t2.Add Data to Table\n\n\t3. Search for specific table row\n\n\t4.Edit Specific table row\n\n\t5.Delete specific table row\n\n\tQ.Log Out\n\nAnswer: ");
+                 Console.Write("Choose an operation to perform:[1/2/3/4/5]\n\n\t1.Show Table Data\n\n\t2.Add Data to Table\n\n\t3. Search for specific table row\n\n\t4.Edit Specific table row\n\n\t5.Delete specific table row\n\n\tQ.Log Out\n\nAnswer: ");
                  userProc = Console.ReadLine();
 
                  if (!procedureOptions.Contains(userProc))
