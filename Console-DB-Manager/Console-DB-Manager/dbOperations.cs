@@ -104,7 +104,7 @@ namespace Console_DB_Manager
             {
                 Console.Clear();
                 newData = new string[3];
-                if (dbToManip != "2") 
+                if (dbToManip != "2")
                 {
                     Console.Write("Name: ");
                     newData[0] = Console.ReadLine().Trim();
@@ -119,7 +119,7 @@ namespace Console_DB_Manager
                         errorMessage = errMessage.DisplayErrorMessage(7);
                         Console.Write(errorMessage);
                         Console.ReadKey();
-                   
+
                     }
                     else
                     {
@@ -132,12 +132,12 @@ namespace Console_DB_Manager
                         }
                         else
                         {
-                            tableData.Add($"row{tableData.Count+1}", newData);
-                            using (StreamWriter sw = new StreamWriter(filePath)) 
+                            tableData.Add($"row{tableData.Count + 1}", newData);
+                            using (StreamWriter sw = new StreamWriter(filePath))
                             {
-                                for (int i = 0; i < tableData.Count; i++) 
-                                {  
-                                    for (int x = 0; x < tableData.Values.ElementAt(i).Length; x++) 
+                                for (int i = 0; i < tableData.Count; i++)
+                                {
+                                    for (int x = 0; x < tableData.Values.ElementAt(i).Length; x++)
                                     {
                                         if (x > 1)
                                         {
@@ -145,7 +145,7 @@ namespace Console_DB_Manager
                                         }
                                         else
                                         {
-                                            sw.Write(tableData.Values.ElementAt(i)[x]+",");
+                                            sw.Write(tableData.Values.ElementAt(i)[x] + ",");
                                         }
                                     }
                                     sw.WriteLine();
@@ -157,7 +157,7 @@ namespace Console_DB_Manager
                             Console.Write("Do you still want to add more data?: [y/N]\nAnswer: ");
                             userProc = Console.ReadLine();
 
-                            if (userProc.ToLower() != "y" && userProc.ToLower() != "n") 
+                            if (userProc.ToLower() != "y" && userProc.ToLower() != "n")
                             {
                                 Console.Clear();
                                 errorMessage = errMessage.DisplayErrorMessage(7);
@@ -167,6 +167,73 @@ namespace Console_DB_Manager
                         }
                     }
 
+                }
+                else 
+                {
+
+                    {
+                        Console.Write("Pet Name: ");
+                        newData[0] = Console.ReadLine().Trim();
+                        Console.Write("Age: ");
+                        newData[1] = Console.ReadLine().Trim();
+                        Console.Write("Gender (Can only be [F | M]): ");
+                        newData[2] = Console.ReadLine().Trim();
+
+                        if (newData[2].Length > 1 || newData[2] == string.Empty)
+                        {
+                            Console.Clear();
+                            errorMessage = errMessage.DisplayErrorMessage(7);
+                            Console.Write(errorMessage);
+                            Console.ReadKey();
+
+                        }
+                        else
+                        {
+                            if (newData[2].ToUpper() != "F" && newData[2].ToUpper() != "M")
+                            {
+                                Console.Clear();
+                                errorMessage = errMessage.DisplayErrorMessage(7);
+                                Console.Write(errorMessage);
+                                Console.ReadKey();
+                            }
+                            else
+                            {
+                                tableData.Add($"row{tableData.Count + 1}", newData);
+                                using (StreamWriter sw = new StreamWriter(filePath))
+                                {
+                                    for (int i = 0; i < tableData.Count; i++)
+                                    {
+                                        for (int x = 0; x < tableData.Values.ElementAt(i).Length; x++)
+                                        {
+                                            if (x > 1)
+                                            {
+                                                sw.Write(tableData.Values.ElementAt(i)[x]);
+                                            }
+                                            else
+                                            {
+                                                sw.Write(tableData.Values.ElementAt(i)[x] + ",");
+                                            }
+                                        }
+                                        sw.WriteLine();
+                                    }
+
+                                    sw.Close();
+                                }
+
+                                Console.Write("Do you still want to add more data?: [y/N]\nAnswer: ");
+                                userProc = Console.ReadLine();
+
+                                if (userProc.ToLower() != "y" && userProc.ToLower() != "n")
+                                {
+                                    Console.Clear();
+                                    errorMessage = errMessage.DisplayErrorMessage(7);
+                                    Console.Write(errorMessage);
+                                    Console.ReadKey();
+                                }
+                            }
+                        }
+
+                    }
                 }
             }
         }
