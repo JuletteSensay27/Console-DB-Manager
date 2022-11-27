@@ -207,7 +207,6 @@ namespace Console_DB_Manager
                             }
                         }
                     }
-
                     if (userProc.ToLower() == "q")
                     {
                         errorMessage = errMessage.DisplayErrorMessage(8);
