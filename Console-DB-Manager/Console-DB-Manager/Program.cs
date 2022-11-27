@@ -12,6 +12,7 @@ namespace Console_DB_Manager
         private static accountLogin accLog = new accountLogin();
         private static showErrorMessage errMessage = new showErrorMessage();
         private static dbOperations dbOps = new dbOperations();
+        private static superAdminSystem supAds = new superAdminSystem();
 
         static void Main(string[] args)
         {
@@ -76,7 +77,14 @@ namespace Console_DB_Manager
 
         private static void mainOperation(string authLevel)
         {
-           
+            if (authLevel != "SA")
+            {
+
+            }
+            else
+            {
+                supAds.mainSystem();
+            }
         }
     }
 }
