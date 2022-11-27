@@ -20,7 +20,7 @@ namespace Console_DB_Manager
             while (userProc != "q")
             {
                 Console.Clear();
-                if (tableToManip == string.Empty) 
+                if (tableToManip == string.Empty)
                 {
                     Console.Write("Choose a table to manipulate:[1/2]\n\n\t1.Accounts Table\n\n\t2.Main Table\n\n\tQ.Log Out\n\nAnswer: ");
                     userProc = Console.ReadLine();
@@ -35,7 +35,7 @@ namespace Console_DB_Manager
                     }
                     else
                     {
-                        for (int i = 0; i < tableOptions.Length; i++) 
+                        for (int i = 0; i < tableOptions.Length; i++)
                         {
                             if (userProc != "Q" && userProc != "q")
                             {
@@ -50,45 +50,49 @@ namespace Console_DB_Manager
                             {
                                 Console.Clear();
                                 string errorMessage = errMess.DisplayErrorMessage(8);
-                                Console.WriteLine(errorMessage);                             
+                                Console.WriteLine(errorMessage);
                                 break;
                             }
                         }
                     }
                 }
-
-                Console.Clear();
-                Console.Write("Choose an operation to perform:[1/2/3/4/5/6]\n\n\t1.Show Table Data\n\n\t2.Add Data to Table\n\n\t3. Search for specific table row\n\n\t4.Edit Specific table row\n\n\t5.Delete specific table row\n\n\t6.Choose another table\n\n\tQ.Log Out\n\nAnswer: ");
-                userProc = Console.ReadLine();
-
-                if (!procedureOptions.Contains(userProc))
-                {
-                    Console.Clear();
-                    string errorMessage = errMess.DisplayErrorMessage(7);
-                    Console.WriteLine(errorMessage);
-                    Console.ReadKey();
-                }
                 else
                 {
-                    switch (userProc) 
-                    {
-                        case "1":
-                            showData();
-                            break;
-                        case "6":
-                            tableToManip = string.Empty;
-                            break;
-                        case "Q":
-                            Console.Clear();
-                            string errorMessage = errMess.DisplayErrorMessage(8);
-                            Console.WriteLine(errorMessage);
-                            break;
-                        case "q":
-                            Console.Clear();
-                            errorMessage = errMess.DisplayErrorMessage(8);
-                            Console.WriteLine(errorMessage);
-                            break;
+                    Console.Clear();
+                    Console.Write("Choose an operation to perform:[1/2/3/4/5/6]\n\n\t1.Show Table Data\n\n\t2.Add Data to Table\n\n\t3. Search for specific table row\n\n\t4.Edit Specific table row\n\n\t5.Delete specific table row\n\n\t6.Choose another table\n\n\tQ.Log Out\n\nAnswer: ");
+                    userProc = Console.ReadLine();
 
+                    if (!procedureOptions.Contains(userProc))
+                    {
+                        Console.Clear();
+                        string errorMessage = errMess.DisplayErrorMessage(7);
+                        Console.WriteLine(errorMessage);
+                        Console.ReadKey();
+                    }
+                    else
+                    {
+                        switch (userProc)
+                        {
+                            case "1":
+                                showData();
+                                break;
+                            case "2":
+                                addData();
+                                break;
+                            case "6":
+                                tableToManip = string.Empty;
+                                break;
+                            case "Q":
+                                Console.Clear();
+                                string errorMessage = errMess.DisplayErrorMessage(8);
+                                Console.WriteLine(errorMessage);
+                                break;
+                            case "q":
+                                Console.Clear();
+                                errorMessage = errMess.DisplayErrorMessage(8);
+                                Console.WriteLine(errorMessage);
+                                break;
+                        }
                     }
                 }
             }
