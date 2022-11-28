@@ -14,3 +14,11 @@ C:\Users\julet\Desktop\Workspace\c# Apps\Console-DB-Manager\Console-DB-Manager\C
 C:\Users\julet\Desktop\Workspace\c# Apps\Console-DB-Manager\Console-DB-Manager\Console-DB-Manager\obj\Debug\Console-DB-Manager.csproj.CoreCompileInputs.cache
 C:\Users\julet\Desktop\Workspace\c# Apps\Console-DB-Manager\Console-DB-Manager\Console-DB-Manager\obj\Debug\Console-DB-Manager.exe
 C:\Users\julet\Desktop\Workspace\c# Apps\Console-DB-Manager\Console-DB-Manager\Console-DB-Manager\obj\Debug\Console-DB-Manager.pdb
+C:\Users\JAPEQ-Family\Desktop\Workspace\c# Apps\Console-DB-Manager\Console-DB-Manager\Console-DB-Manager\bin\Debug\Console-DB-Manager.exe.config
+C:\Users\JAPEQ-Family\Desktop\Workspace\c# Apps\Console-DB-Manager\Console-DB-Manager\Console-DB-Manager\bin\Debug\Console-DB-Manager.exe
+C:\Users\JAPEQ-Family\Desktop\Workspace\c# Apps\Console-DB-Manager\Console-DB-Manager\Console-DB-Manager\bin\Debug\Console-DB-Manager.pdb
+C:\Users\JAPEQ-Family\Desktop\Workspace\c# Apps\Console-DB-Manager\Console-DB-Manager\Console-DB-Manager\obj\Debug\Console-DB-Manager.csproj.AssemblyReference.cache
+C:\Users\JAPEQ-Family\Desktop\Workspace\c# Apps\Console-DB-Manager\Console-DB-Manager\Console-DB-Manager\obj\Debug\Console-DB-Manager.csproj.SuggestedBindingRedirects.cache
+C:\Users\JAPEQ-Family\Desktop\Workspace\c# Apps\Console-DB-Manager\Console-DB-Manager\Console-DB-Manager\obj\Debug\Console-DB-Manager.csproj.CoreCompileInputs.cache
+C:\Users\JAPEQ-Family\Desktop\Workspace\c# Apps\Console-DB-Manager\Console-DB-Manager\Console-DB-Manager\obj\Debug\Console-DB-Manager.exe
+C:\Users\JAPEQ-Family\Desktop\Workspace\c# Apps\Console-DB-Manager\Console-DB-Manager\Console-DB-Manager\obj\Debug\Console-DB-Manager.pdb

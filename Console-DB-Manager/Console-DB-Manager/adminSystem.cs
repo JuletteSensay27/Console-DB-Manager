@@ -17,6 +17,12 @@ namespace Console_DB_Manager
             string[] procedureOptions = new string[] { "1", "2", "3", "4", "5", "Q", "q" };
             string tableToManip = string.Empty;
 
+            /*
+             * 
+             * HELLO!
+             * 
+             */
+
             while (userProc != "q")
             {
                 Console.Clear();
